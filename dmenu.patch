@@ -1,0 +1,11 @@
+diff --unified --recursive --text src/dmenu/dmenu.c src.new/dmenu/dmenu.c
+--- dmenu/dmenu.c	2019-03-09 06:49:01.578735503 -0800
++++ dmenu/dmenu.c	2019-03-09 06:50:15.002067451 -0800
+@@ -425,6 +425,7 @@
+ 		}
+ 		sel = matchend;
+ 		break;
++  case XK_Super_L: /* fallthrough */
+ 	case XK_Escape:
+ 		cleanup();
+ 		exit(1);

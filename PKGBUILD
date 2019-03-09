@@ -7,7 +7,7 @@
 
 _pkgname=dmenu
 pkgname=$_pkgname-git
-pkgver=4.6.2.gbf3deb6
+pkgver=4.9.5.gdb6093f
 pkgrel=1
 pkgdesc="A generic menu for X"
 url="http://tools.suckless.org/dmenu/"
@@ -17,8 +17,9 @@ depends=('sh' 'libxinerama' 'libxft')
 makedepends=('git')
 provides=($_pkgname)
 conflicts=($_pkgname)
-source=(git://git.suckless.org/$_pkgname)
-sha256sums=('SKIP')
+source=(git://git.suckless.org/$_pkgname dmenu.patch)
+sha256sums=('SKIP'
+            '8b0a685b984b77e35c1a53a4504e26d511bdaeb708399c7e6dc0f33f927b190a')
 
 pkgver() {
   cd $_pkgname
@@ -27,6 +28,7 @@ pkgver() {
 
 prepare() {
   cd $_pkgname
+  patch --strip=1 --input=../dmenu.patch
   # to use a custom config.h, place it in the package directory
   if [[ -f ${SRCDEST}/config.h ]]; then
       cp "${SRCDEST}/config.h" .
